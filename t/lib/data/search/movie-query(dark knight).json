@@ -1,0 +1,69 @@
+{
+    "page": 1,
+    "total_results": 26,
+    "total_pages": 2,
+    "results": [
+        {
+            "popularity": 53.532,
+            "vote_count": 22012,
+            "video": false,
+            "poster_path": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+            "id": 155,
+            "adult": false,
+            "backdrop_path": "/cfT29Im5VDvjE0RpyKOSdCKZal7.jpg",
+            "original_language": "en",
+            "original_title": "The Dark Knight",
+            "genre_ids": [
+                28,
+                80,
+                18,
+                53
+            ],
+            "title": "The Dark Knight",
+            "vote_average": 8.4,
+            "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
+            "release_date": "2008-07-16"
+        },
+        {
+            "popularity": 33.101,
+            "vote_count": 15877,
+            "video": false,
+            "poster_path": "/vzvKcPQ4o7TjWeGIn0aGC9FeVNu.jpg",
+            "id": 49026,
+            "adult": false,
+            "backdrop_path": "/2yubt6LkLfmuv8Z7sbhmjZUYom7.jpg",
+            "original_language": "en",
+            "original_title": "The Dark Knight Rises",
+            "genre_ids": [
+                28,
+                80,
+                18,
+                53
+            ],
+            "title": "The Dark Knight Rises",
+            "vote_average": 7.7,
+            "overview": "Following the death of District Attorney Harvey Dent, Batman assumes responsibility for Dent's crimes to protect the late attorney's reputation and is subsequently hunted by the Gotham City Police Department. Eight years later, Batman encounters the mysterious Selina Kyle and the villainous Bane, a new terrorist leader who overwhelms Gotham's finest. The Dark Knight resurfaces to protect a city that has branded him an enemy.",
+            "release_date": "2012-07-16"
+        },
+        {
+            "popularity": 19.51,
+            "vote_count": 856,
+            "video": false,
+            "poster_path": "/kkjTbwV1Xnj8wBL52PjOcXzTbnb.jpg",
+            "id": 123025,
+            "adult": false,
+            "backdrop_path": "/9w9LmD0rXRpKchxnq9om9c62maG.jpg",
+            "original_language": "en",
+            "original_title": "Batman: The Dark Knight Returns, Part 1",
+            "genre_ids": [
+                28,
+                16,
+                9648
+            ],
+            "title": "Batman: The Dark Knight Returns, Part 1",
+            "vote_average": 7.7,
+            "overview": "Batman has not been seen for ten years. A new breed of criminal ravages Gotham City, forcing 55-year-old Bruce Wayne back into the cape and cowl. But, does he still have what it takes to fight crime in a new era?",
+            "release_date": "2012-08-21"
+        }
+    ]
+}

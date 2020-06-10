@@ -1,0 +1,77 @@
+{
+    "page": 1,
+    "total_results": 1,
+    "total_pages": 1,
+    "results": [
+        {
+            "popularity": 5.354,
+            "known_for_department": "Acting",
+            "name": "Kirsten Dunst",
+            "id": 205,
+            "profile_path": "/5dI5s8Oq2Ook5PFzTWMW6DCXVjm.jpg",
+            "adult": false,
+            "known_for": [
+                {
+                    "poster_path": "/cqyN8Kt10wCrIUUZX7l5uDJIY0C.jpg",
+                    "vote_count": 11711,
+                    "video": false,
+                    "media_type": "movie",
+                    "id": 557,
+                    "adult": false,
+                    "backdrop_path": "/vugNEFkYXrR6yjr6ZoawnHNyCmu.jpg",
+                    "original_language": "en",
+                    "original_title": "Spider-Man",
+                    "genre_ids": [
+                        28,
+                        14
+                    ],
+                    "title": "Spider-Man",
+                    "vote_average": 7.1,
+                    "overview": "After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.",
+                    "release_date": "2002-05-01"
+                },
+                {
+                    "poster_path": "/olxpyq9kJAZ2NU1siLshhhXEPR7.jpg",
+                    "vote_count": 9512,
+                    "video": false,
+                    "media_type": "movie",
+                    "id": 558,
+                    "adult": false,
+                    "backdrop_path": "/6al048Lat3eLVQOuKtc9h6Tu94d.jpg",
+                    "original_language": "en",
+                    "original_title": "Spider-Man 2",
+                    "genre_ids": [
+                        28,
+                        12,
+                        14
+                    ],
+                    "title": "Spider-Man 2",
+                    "vote_average": 7,
+                    "overview": "Peter Parker is going through a major identity crisis. Burned out from being Spider-Man, he decides to shelve his superhero alter ego, which leaves the city suffering in the wake of carnage left by the evil Doc Ock. In the meantime, Parker still can't act on his feelings for Mary Jane Watson, a girl he's loved since childhood.",
+                    "release_date": "2004-06-25"
+                },
+                {
+                    "poster_path": "/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg",
+                    "vote_count": 9292,
+                    "video": false,
+                    "media_type": "movie",
+                    "id": 38,
+                    "adult": false,
+                    "backdrop_path": "/W1ffLQGHoxfAOq0ZYdPtJlvAdb.jpg",
+                    "original_language": "en",
+                    "original_title": "Eternal Sunshine of the Spotless Mind",
+                    "genre_ids": [
+                        18,
+                        878,
+                        10749
+                    ],
+                    "title": "Eternal Sunshine of the Spotless Mind",
+                    "vote_average": 8.1,
+                    "overview": "Joel Barish, heartbroken that his girlfriend underwent a procedure to erase him from her memory, decides to do the same. However, as he watches his memories of her fade away, he realises that he still loves her, and may be too late to correct his mistake.",
+                    "release_date": "2004-03-19"
+                }
+            ],
+            "gender": 1
+        }
+    ]
+}

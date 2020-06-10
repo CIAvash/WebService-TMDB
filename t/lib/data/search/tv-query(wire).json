@@ -1,0 +1,47 @@
+{
+    "page": 1,
+    "total_results": 21,
+    "total_pages": 2,
+    "results": [
+        {
+            "original_name": "The Wire",
+            "genre_ids": [
+                80,
+                18
+            ],
+            "name": "The Wire",
+            "popularity": 26.716,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 1002,
+            "first_air_date": "2002-06-02",
+            "backdrop_path": "/oggnxmvofLtGQvXsO9bAFyCj3p6.jpg",
+            "original_language": "en",
+            "id": 1438,
+            "vote_average": 8.3,
+            "overview": "Told from the points of view of both the Baltimore homicide and narcotics detectives and their targets, the series captures a universe in which the national war on drugs has become a permanent, self-sustaining bureaucracy, and distinctions between good and evil are routinely obliterated.",
+            "poster_path": "/4lbclFySvugI51fwsyxBTOm4DqK.jpg"
+        },
+        {
+            "original_name": "Wire in the Blood",
+            "genre_ids": [
+                80,
+                9648
+            ],
+            "name": "Wire in the Blood",
+            "popularity": 4.993,
+            "origin_country": [
+                "GB"
+            ],
+            "vote_count": 28,
+            "first_air_date": "2002-11-14",
+            "backdrop_path": null,
+            "original_language": "en",
+            "id": 6322,
+            "vote_average": 7.6,
+            "overview": "Clinical psychologist Dr Tony Hill's uncanny ability to see into the minds of murderers means he finds it difficult to distance himself from disturbing cases.",
+            "poster_path": "/ePYpqnSLVvBqYyeZGNKfYb7bOH.jpg"
+        }
+    ]
+}

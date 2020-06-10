@@ -1,0 +1,52 @@
+{
+    "cast": [
+        {
+            "poster_path": "/k64lMNJScnkeXzOmQW9JVDTseaF.jpg",
+            "original_name": "Growing Pains",
+            "id": 54,
+            "vote_count": 60,
+            "vote_average": 6.8,
+            "name": "Growing Pains",
+            "first_air_date": "1985-09-24",
+            "genre_ids": [
+                35
+            ],
+            "popularity": 5.408,
+            "character": "",
+            "episode_count": 2,
+            "original_language": "en",
+            "credit_id": "525333fb19c295794002c720",
+            "backdrop_path": "/qowDKrH3k5Ea04vg4kZimzP5jfq.jpg",
+            "overview": "Growing Pains is an American television sitcom about an affluent family, residing in Huntington, Long Island, New York, with a working mother and a stay-at-home psychiatrist father raising three children together, which aired on ABC from September 24, 1985, to April 25, 1992.",
+            "origin_country": [
+                "US"
+            ]
+        }
+    ],
+    "crew": [
+        {
+            "id": 69851,
+            "department": "Production",
+            "original_language": "en",
+            "episode_count": 8,
+            "job": "Executive Producer",
+            "overview": "Anthology series of famous feuds with the first season based on the legendary rivalry between Bette Davis and Joan Crawford which began early on their careers, climaxed on the set of \"Whatever Happened to Baby Jane?\" and evolved into an Oscar vendetta.",
+            "origin_country": [
+                "US"
+            ],
+            "original_name": "FEUD",
+            "vote_count": 97,
+            "name": "FEUD",
+            "popularity": 10.129,
+            "credit_id": "58d06d6e9251415a240011dc",
+            "backdrop_path": "/kKSSvF4nLudxX907Qm75nRUOOHn.jpg",
+            "first_air_date": "2017-03-05",
+            "vote_average": 8.1,
+            "genre_ids": [
+                18
+            ],
+            "poster_path": "/obztijEwCVkKQutVK9eARn9jyNh.jpg"
+        }
+    ],
+    "id": 287
+}

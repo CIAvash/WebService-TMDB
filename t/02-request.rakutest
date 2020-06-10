@@ -1,0 +1,49 @@
+use v6.c;
+use Test;
+use Test::Mock;
+use WebService::TMDB::Role::Request;
+use WebService::TMDB::Request;
+use WebService::TMDB::Facade::UserAgent;
+
+my $obj = WebService::TMDB::Request.new: :access_token<1234>;
+does-ok $obj, WebService::TMDB::Role::Request;
+can-ok $obj, 'access_token';
+can-ok $obj, 'ua';
+isa-ok $obj.ua, WebService::TMDB::Facade::UserAgent;
+can-ok $obj, 'base_url';
+can-ok $obj, 'get';
+
+my $ua = mocked(
+    WebService::TMDB::Facade::UserAgent,
+    returning => { get => '{"key": "value"}' }
+);
+
+my $request = WebService::TMDB::Request.new: :$ua, :access_token<1234>;
+
+my $base_url = 'https://api.themoviedb.org/3';
+
+my $response;
+lives-ok { $response = $request.get: 'resource' }, 'request a resource';
+check-mock $ua, *.called: 'get', :1times, with => \("$base_url/resource?language=en-US", :Authorization('Bearer 1234'));
+is-deeply $response, '{"key": "value"}', 'Returns the correct response';
+
+lives-ok { $request.get: 'https://absolute-url' }, 'request an absolute url';
+check-mock $ua, *.called: 'get', :1times, with => \('https://absolute-url?language=en-US', :Authorization('Bearer 1234'));
+
+$request.get: 'resource', :params(query => 'value');
+check-mock $ua, *.called: 'get', :1times, with => \("$base_url/resource?language=en-US&query=value", :Authorization('Bearer 1234'));
+
+$request.get: 'resource', :params(query => 'value with space');
+check-mock $ua, *.called: 'get', :1times, with => \($base_url ~ '/resource?language=en-US&query=value%20with%20space', :Authorization('Bearer 1234'));
+
+$request.get: 'resource', :params({query => 'value', query2 => 'value2'});
+check-mock $ua, *.called: 'get', :1times, with => \("$base_url/resource?language=en-US&query=value&query2=value2", :Authorization('Bearer 1234'));
+
+$request.get: 'resource', ['credits'];
+check-mock $ua, *.called: 'get', :1times, with => \("$base_url/resource?append_to_response=credits&language=en-US", :Authorization('Bearer 1234'));
+
+my $request2 = WebService::TMDB::Request.new: :$ua, :base_url<http://base-url/>, :access_token<1234>, :language<fa>;
+$request2.get: 'resource';
+check-mock $ua, *.called: 'get', :1times, with => \('http://base-url/resource?language=fa', :Authorization('Bearer 1234'));
+
+done-testing;

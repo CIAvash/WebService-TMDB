@@ -1,0 +1,569 @@
+use v6.c;
+use lib 't/lib';
+use Test;
+use FakeRequest;
+use WebService::TMDB;
+
+
+subtest 'Language', {
+    my $tmdb = WebService::TMDB.new: :access_token<1234>;
+    is $tmdb.request.language, 'en-US', 'Default language is correct';
+    is $tmdb.request.language, $tmdb.language, 'Language is delegated correctly';
+    $tmdb.set_language: 'fa';
+    is $tmdb.language, 'fa', 'Language is set correctly';
+}
+
+my $tmdb = WebService::TMDB.new: :request(FakeRequest.new), :access_token<1234>;
+
+subtest 'Movie', {
+    my $movie = $tmdb.movie: 550;
+
+    is $movie.adult, False, 'is not adult';
+    is $movie.backdrop_path, '/pCUdYAaarKqY2AAUtV6xXYO8UGY.jpg', 'backdrop path is correct';
+    is $movie.budget, 63000000, 'Budget is correct';
+    isa-ok $movie.genres, Array[WebService::TMDB::Genre];
+    is $movie.genres[0].id, 18, 'Genre id is correct';
+    is $movie.genres[0].name, 'Drama', 'Genre name is correct';
+    is $movie.homepage, 'http://www.foxmovies.com/movies/fight-club', 'Homepage is correct';
+    is $movie.id, 550, 'ID is correct';
+    is $movie.imdb_id, 'tt0137523', 'IMDB ID is correct';
+    is $movie.original_language, 'en', 'Original language is correct';
+    is $movie.original_title, 'Fight Club', 'Original title is correct';
+    is $movie.overview, "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.", 'Overview is correct';
+    is $movie.popularity, 43.287, 'Popularity is correct';
+    is $movie.poster_path, '/oqhuGSl6gp22rIRo52IouPhV4hl.jpg', 'Poster path is correct';
+    isa-ok $movie.production_companies, Array[WebService::TMDB::Company];
+    is $movie.production_companies[0].id, 508, 'Company id is correct';
+    is $movie.production_companies[0].logo_path, '/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png', 'Company logo path is correct';
+    is $movie.production_companies[0].name, 'Regency Enterprises', 'Company name is correct';
+    is $movie.production_companies[0].origin_country, 'US', 'Company country is correct';
+    isa-ok $movie.production_countries, Array[WebService::TMDB::Country];
+    is $movie.production_countries[1].iso_3166_1, 'US', 'Country iso is correct';
+    is $movie.production_countries[1].name, 'United States of America', 'Country name is correct';
+    is $movie.release_date, Date.new('1999-10-15'), 'Release date is correct';
+    is $movie.revenue, 100853753, 'Revenue is correct';
+    is $movie.runtime, 139, 'Runtime is correct';
+    isa-ok $movie.spoken_languages, Array[WebService::TMDB::SpokenLanguage];
+    is $movie.spoken_languages[0].iso_639_1, 'en', 'Language iso is correct';
+    is $movie.spoken_languages[0].name, 'English', 'Language name is correct';
+    is $movie.status, 'Released', 'Status is correct';
+    is $movie.tagline, 'Mischief. Mayhem. Soap.', 'Tagline is correct';
+    is $movie.title, 'Fight Club', 'Title is correct';
+    is $movie.video, False, 'Video is correct';
+    is $movie.vote_average, 8.4, 'Vote average is correct';
+    is $movie.vote_count, 18948, 'Vote count is correct';
+
+    subtest 'Movie with appended response', {
+        my $movie = $tmdb.movie: 550, append => <credits external_ids>;
+
+        isa-ok $movie.credits.cast, Array[WebService::TMDB::Cast];
+        is $movie.credits.cast[0].cast_id, 4, 'Cast cast_id is correct';
+        is $movie.credits.cast[0].character, 'The Narrator', 'Cast character is correct';
+        is $movie.credits.cast[0].credit_id, '52fe4250c3a36847f80149f3', 'Cast credit_id is correct';
+        is $movie.credits.cast[0].gender, 2, 'Cast gender is correct';
+        is $movie.credits.cast[0].id, 819, 'Cast ID is correct';
+        is $movie.credits.cast[0].name, 'Edward Norton', 'Cast name is correct';
+        is $movie.credits.cast[0].order, 0, 'Cast order is correct';
+        is $movie.credits.cast[0].profile_path, '/5XBzD5WuTyVQZeS4VI25z2moMeY.jpg', 'Cast profile path is correct';
+        isa-ok $movie.credits.crew, Array[WebService::TMDB::Crew];
+        is $movie.credits.crew[0].credit_id, '55731b8192514111610027d7', 'Crew credit_id is correct';
+        is $movie.credits.crew[0].department, 'Production', 'Crew department is correct';
+        is $movie.credits.crew[0].gender, 2, 'Crew gender is correct';
+        is $movie.credits.crew[0].id, 376, 'Crew ID is correct';
+        is $movie.credits.crew[0].job, 'Executive Producer', 'Crew job is correct';
+        is $movie.credits.crew[0].name, 'Arnon Milchan', 'Crew name is correct';
+        is $movie.credits.crew[0].profile_path, '/b2hBExX4NnczNAnLuTBF4kmNhZm.jpg', 'Crew profile path is correct';
+        
+        isa-ok $movie.external_ids, WebService::TMDB::ExternalID;
+        is $movie.external_ids.imdb_id, 'tt0137523', 'External id imdb id is correct';
+        is $movie.external_ids.facebook_id, 'FightClub', 'External id facebook id is correct';
+        is $movie.external_ids.instagram_id, Str, 'External id instagram id is correct';
+        is $movie.external_ids.twitter_id, Str, 'External id twitter id is correct';
+    }
+}
+
+subtest 'Movie Credits', {
+    my $credits = $tmdb.movie_credits: 550;
+
+    is $credits.id, 550, 'Credits id is correct';
+    isa-ok $credits.cast, Array[WebService::TMDB::Cast];
+    is $credits.cast[0].cast_id, 4, 'Cast cast_id is correct';
+    is $credits.cast[0].character, 'The Narrator', 'Cast character is correct';
+    is $credits.cast[0].credit_id, '52fe4250c3a36847f80149f3', 'Cast credit_id is correct';
+    is $credits.cast[0].gender, 2, 'Cast gender is correct';
+    is $credits.cast[0].id, 819, 'Cast ID is correct';
+    is $credits.cast[0].name, 'Edward Norton', 'Cast name is correct';
+    is $credits.cast[0].order, 0, 'Cast order is correct';
+    is $credits.cast[0].profile_path, '/5XBzD5WuTyVQZeS4VI25z2moMeY.jpg', 'Cast profile path is correct';
+    isa-ok $credits.crew, Array[WebService::TMDB::Crew];
+    is $credits.crew[0].credit_id, '55731b8192514111610027d7', 'Crew credit_id is correct';
+    is $credits.crew[0].department, 'Production', 'Crew department is correct';
+    is $credits.crew[0].gender, 2, 'Crew gender is correct';
+    is $credits.crew[0].id, 376, 'Crew ID is correct';
+    is $credits.crew[0].job, 'Executive Producer', 'Crew job is correct';
+    is $credits.crew[0].name, 'Arnon Milchan', 'Crew name is correct';
+    is $credits.crew[0].profile_path, '/b2hBExX4NnczNAnLuTBF4kmNhZm.jpg', 'Crew profile path is correct';
+}
+
+subtest 'Movie external ids', {
+    my $external_ids = $tmdb.movie_external_ids: 550;
+    isa-ok $external_ids, WebService::TMDB::ExternalID;
+    is $external_ids.id, 550, 'External id id is correct';
+    is $external_ids.imdb_id, 'tt0137523', 'External id imdb id is correct';
+    is $external_ids.facebook_id, 'FightClub', 'External id facebook id is correct';
+    is $external_ids.instagram_id, Str, 'External id instagram id is correct';
+    is $external_ids.twitter_id, Str, 'External id twitter id is correct';
+}
+
+subtest 'Upcoming Movie', {
+    my $upcoming = $tmdb.movie_upcoming;
+
+    isa-ok $upcoming, WebService::TMDB::Movie::Upcoming;
+    is $upcoming.page, 1, 'Upcoming page is correct';
+    is $upcoming.total_results, 206, 'Upcoming total results is correct';
+    is $upcoming.total_pages, 11, 'Upcoming total pages is correct';
+    is $upcoming.dates.maximum, Date.new('2020-06-13'), 'Upcoming maximum date is correct';
+    is $upcoming.dates.minimum, Date.new('2020-05-17'), 'Upcoming minimum date is correct';
+    isa-ok $upcoming.results, Array[WebService::TMDB::Movie];
+    is $upcoming.results[1].original_title, 'The Hunt', 'Upcoming result title is correct';
+}
+
+subtest 'Now playing Movie', {
+    my $now_playing = $tmdb.movie_now_playing;
+
+    isa-ok $now_playing, WebService::TMDB::Movie::Upcoming;
+    is $now_playing.page, 1, 'Now_playing page is correct';
+    is $now_playing.total_results, 664, 'Now_playing total results is correct';
+    is $now_playing.total_pages, 34, 'Now_playing total pages is correct';
+    is $now_playing.dates.maximum, Date.new('2020-05-16'), 'Now_playing maximum date is correct';
+    is $now_playing.dates.minimum, Date.new('2020-03-29'), 'Now_playing minimum date is correct';
+    isa-ok $now_playing.results, Array[WebService::TMDB::Movie];
+    is $now_playing.results[1].original_title, 'Onward', 'Now_playing result title is correct';
+}
+
+subtest 'Search Movie', {
+    my $search = $tmdb.search_movie: query => 'dark knight';
+
+    isa-ok $search, WebService::TMDB::Movie::Search;
+    is $search.page, 1, 'Search page is correct';
+    is $search.total_results, 26, 'Search total results is correct';
+    is $search.total_pages, 2, 'Search total pages is correct';
+    isa-ok $search.results, Array[WebService::TMDB::Movie];
+    is $search.results[0].original_title, 'The Dark Knight', 'Search result title is correct';
+}
+
+subtest 'Discover movie', {
+    my $search = $tmdb.discover_movie: primary_release_year => 2020, with_genres => 18;
+
+    isa-ok $search, WebService::TMDB::Movie::Search;
+    is $search.page, 1, 'Discover page is correct';
+    is $search.total_results, 1490, 'Discover total results is correct';
+    is $search.total_pages, 75, 'Discover total pages is correct';
+    isa-ok $search.results, Array[WebService::TMDB::Movie];
+    is $search.results[0].original_title, 'Bloodshot', 'Discover result title is correct';
+}
+
+subtest 'TV', {
+    my $tv = $tmdb.tv: 1396;
+
+    is $tv.backdrop_path, '/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg', 'Backdrop path is correct';
+    isa-ok $tv.created_by, Array[WebService::TMDB::Crew];
+    is $tv.created_by[0].id, 66633, 'Creator id is correct';
+    is $tv.created_by[0].credit_id, '52542286760ee31328001a7b', 'Creator credit id is correct';
+    is $tv.created_by[0].name, 'Vince Gilligan', 'Creator name is correct';
+    is $tv.created_by[0].gender, 2, 'Creator gender is correct';
+    is $tv.created_by[0].profile_path, Str, 'Creator profile path is correct';
+    is-deeply $tv.episode_run_time, Array[Int]([45, 47]), 'Episode run time is correct';
+    is $tv.first_air_date, Date.new('2008-01-20'), 'First air date is correct';
+    # isa-ok $tv.genres, Array[WebService::TMDB::Genre];
+    is $tv.genres[0].id, 18, 'Genre id is correct';
+    is $tv.genres[0].name, 'Drama', 'Genre name is correct';
+    is $tv.homepage, 'http://www.amc.com/shows/breaking-bad', 'Homepage is correct';
+    is $tv.id, 1396, 'id is correct';
+    is $tv.in_production, False, 'in_production is correct';
+    # isa-ok $tv.languages, Array[Str];
+    is $tv.languages[0], 'en', 'Language is correct';
+    is $tv.last_air_date, Date.new('2013-09-29'), 'Last air date is correct';
+    isa-ok $tv.last_episode_to_air, WebService::TMDB::TV::Episode;
+    is $tv.last_episode_to_air.air_date, Date.new('2013-09-29'), 'Last episode air date is correct';
+    is $tv.last_episode_to_air.episode_number, 16, 'Last episode number is correct';
+    is $tv.last_episode_to_air.id, 62161, 'Last episode id is correct';
+    is $tv.last_episode_to_air.name, 'Felina', 'Last episode name is correct';
+    is $tv.last_episode_to_air.overview, 'All bad things must come to an end.', 'Last episode overview is correct';
+    is $tv.last_episode_to_air.production_code, '', 'Last episode production code is correct';
+    is $tv.last_episode_to_air.season_number, 5, 'Last episode season number is correct';
+    is $tv.last_episode_to_air.show_id, 1396, 'Last episode show_id is correct';
+    is $tv.last_episode_to_air.still_path, '/pA0YwyhvdDXP3BEGL2grrIhq8aM.jpg', 'Last episode still path is correct';
+    is $tv.last_episode_to_air.vote_average, 8.987, 'Last episode vote average is correct';
+    is $tv.last_episode_to_air.vote_count, 75, 'Last episode vote count is correct';
+    is $tv.name, 'Breaking Bad', 'Name is correct';
+    is $tv.next_episode_to_air, WebService::TMDB::TV::Episode, 'Next episode to air is correct';
+    # isa-ok $tv.networks, Array[WebService::TMDB::Company];
+    is $tv.networks[0].name, 'AMC', 'Network name is correct';
+    is $tv.networks[0].id, 174, 'Network id is correct';
+    is $tv.networks[0].logo_path, '/alqLicR1ZMHMaZGP3xRQxn9sq7p.png', 'Network logo path is correct';
+    is $tv.networks[0].origin_country, 'US', 'Network origin country is correct';
+    is $tv.number_of_episodes, 62, 'Number of episodes is correct';
+    is $tv.number_of_seasons, 5, 'Number of seasons is correct';
+    # isa-ok $tv.origin_country, Array[Str];
+    is $tv.origin_country[0], 'US', 'Origin country is correct';
+    is $tv.original_language, 'en', 'Original language is correct';
+    is $tv.original_name, 'Breaking Bad', 'Original name is correct';
+    is $tv.overview, "When Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a sense of fearlessness and an unrelenting desire to secure his family's financial future at any cost as he enters the dangerous world of drugs and crime.", 'Overview is correct';
+    is $tv.popularity, 89.63, 'Popularity is correct';
+    is $tv.poster_path, '/ggFHVNu6YYI5L9pCfOacjizRGt.jpg', 'Poster path is correct';
+    # isa-ok $tv.production_companies, Array[WebService::TMDB::Company];
+    is $tv.production_companies[0].id, 11073, 'Company id is correct';
+    isa-ok $tv.seasons, Array[WebService::TMDB::TV::Season];
+    is $tv.seasons[1].air_date, Date.new('2008-01-20'), 'Season air date is correct';
+    is $tv.seasons[1].episode_count, 7, 'Season episode count is correct';
+    is $tv.seasons[1].season_number, 1, 'Season number is correct';
+    is $tv.status, 'Ended', 'Status is correct';
+    is $tv.type, 'Scripted', 'Type is correct';
+    is $tv.vote_average, 8.5, 'Vote average is correct';
+    is $tv.vote_count, 4482, 'Vote count is correct';
+
+    subtest 'TV with appended response', {
+        my $tv = $tmdb.tv: 1396, append => ['credits'];
+        is $tv.name, 'Breaking Bad', 'Name is correct';
+        isa-ok $tv.credits, WebService::TMDB::Credits;
+        is $tv.credits.cast[0].character, 'Walter White', 'Cast character is correct';
+        is $tv.credits.cast[0].name, 'Bryan Cranston', 'Cast name is correct';
+        is $tv.credits.crew[0].department, 'Production', 'Crew department is correct';
+        is $tv.credits.crew[0].name, 'Vince Gilligan', 'Crew name is correct';
+    }
+
+    subtest 'TV Season', {
+        my $season = $tv.season: 1;
+
+        is $season._id, '52542272760ee313280005f8', '_id is correct';
+        is $season.air_date, Date.new('2008-01-20'), 'Air date is correct';
+        isa-ok $season.episodes, Array[WebService::TMDB::TV::Episode];
+        is $season.episodes[0].name, 'Pilot', 'Episode name is correct';
+        is $season.name, 'Season 1', 'Name is correct';
+        is $season.overview, "High school chemistry teacher Walter White's life is suddenly transformed by a dire medical diagnosis. Street-savvy former student Jesse Pinkman \"teaches\" Walter a new trade.", 'Overview is correct';
+        is $season.id, 3572, 'id is correct';
+        is $season.poster_path, '/1BP4xYv9ZG4ZVHkL7ocOziBbSYH.jpg', 'Poster path is correct';
+        is $season.season_number, 1, 'Number is correct';
+
+        subtest 'TV Season with appended response', {
+            my $season = $tv.season: 1, append => ['credits'];
+
+            isa-ok $season.credits, WebService::TMDB::Credits;
+            is $season.credits.cast[0].character, 'Walter White', 'Cast character is correct';
+            is $season.credits.cast[0].name, 'Bryan Cranston', 'Cast name is correct';
+            is $season.credits.crew[0].department, 'Production', 'Crew department is correct';
+            is $season.credits.crew[0].name, 'Vince Gilligan', 'Crew name is correct';
+        }
+    }
+
+    subtest 'TV Episode', {
+        my $episode = $tv.season(1).episode: 1;
+
+        is $episode.air_date, Date.new('2008-01-20'), 'Air date is correct';
+        isa-ok $episode.crew, Array[WebService::TMDB::Crew];
+        is $episode.crew[0].job, 'Writer', 'Crew job is correct';
+        is $episode.episode_number, 1, 'Episode number is correct';
+        isa-ok $episode.guest_stars, Array[WebService::TMDB::Cast];
+
+        subtest 'TV Episode with appended response', {
+            my $episode = $tv.season(1).episode: 1, append => ['credits'];
+
+            isa-ok $episode.credits, WebService::TMDB::Credits;
+            is $episode.credits.cast[0].character, 'Walter White', 'Cast character is correct';
+            is $episode.credits.cast[0].name, 'Bryan Cranston', 'Cast name is correct';
+            is $episode.credits.crew[0].department, 'Writing', 'Crew department is correct';
+            is $episode.credits.crew[0].name, 'Vince Gilligan', 'Crew name is correct';
+            is $episode.credits.guest_stars[0].name, 'John Koyama', 'Guest star name is correct';
+        }
+    }
+}
+
+
+subtest 'Season', {
+    my $season = $tmdb.season: :tv(1396), :season(1);
+
+    is $season._id, '52542272760ee313280005f8', '_id is correct';
+    is $season.air_date, Date.new('2008-01-20'), 'Air date is correct';
+    isa-ok $season.episodes, Array[WebService::TMDB::TV::Episode];
+    is $season.episodes[0].name, 'Pilot', 'Episode name is correct';
+    is $season.name, 'Season 1', 'Name is correct';
+    is $season.overview, "High school chemistry teacher Walter White's life is suddenly transformed by a dire medical diagnosis. Street-savvy former student Jesse Pinkman \"teaches\" Walter a new trade.", 'Overview is correct';
+    is $season.id, 3572, 'id is correct';
+    is $season.poster_path, '/1BP4xYv9ZG4ZVHkL7ocOziBbSYH.jpg', 'Poster path is correct';
+    is $season.season_number, 1, 'Number is correct';
+
+    subtest 'TV Season with appended response', {
+        my $season = $tmdb.season: :tv(1396), :season(1), append => ['credits'];
+
+        isa-ok $season.credits, WebService::TMDB::Credits;
+        is $season.credits.cast[0].character, 'Walter White', 'Cast character is correct';
+        is $season.credits.cast[0].name, 'Bryan Cranston', 'Cast name is correct';
+        is $season.credits.crew[0].department, 'Production', 'Crew department is correct';
+        is $season.credits.crew[0].name, 'Vince Gilligan', 'Crew name is correct';
+    }
+}
+
+subtest 'Episode', {
+    my $episode = $tmdb.episode: :tv(1396), :season(1), :episode(1);
+
+    is $episode.air_date, Date.new('2008-01-20'), 'Air date is correct';
+    isa-ok $episode.crew, Array[WebService::TMDB::Crew];
+    is $episode.crew[0].job, 'Writer', 'Crew job is correct';
+    is $episode.episode_number, 1, 'Episode number is correct';
+    isa-ok $episode.guest_stars, Array[WebService::TMDB::Cast];
+
+    subtest 'TV Episode with appended response', {
+        my $episode = $tmdb.episode: :tv(1396), :season(1), :episode(1), append => ['credits'];
+
+        isa-ok $episode.credits, WebService::TMDB::Credits;
+        is $episode.credits.cast[0].character, 'Walter White', 'Cast character is correct';
+        is $episode.credits.cast[0].name, 'Bryan Cranston', 'Cast name is correct';
+        is $episode.credits.crew[0].department, 'Writing', 'Crew department is correct';
+        is $episode.credits.crew[0].name, 'Vince Gilligan', 'Crew name is correct';
+        is $episode.credits.guest_stars[0].name, 'John Koyama', 'Guest star name is correct';
+    }
+}
+
+subtest 'TV airing today', {
+    my $airing_today = $tmdb.tv_airing_today;
+
+    isa-ok $airing_today, WebService::TMDB::TV::Search;
+    is $airing_today.page, 1, 'Airing today page is correct';
+    is $airing_today.total_results, 158, 'Airing today total results is correct';
+    is $airing_today.total_pages, 8, 'Airing today total pages is correct';
+    isa-ok $airing_today.results, Array[WebService::TMDB::TV];
+    is $airing_today.results[0].original_name, 'The 100', 'Airing today result title is correct';
+}
+
+subtest 'TV on the air', {
+    my $on_the_air = $tmdb.tv_on_the_air;
+
+    isa-ok $on_the_air, WebService::TMDB::TV::Search;
+    is $on_the_air.page, 1, 'On the air page is correct';
+    is $on_the_air.total_results, 424, 'On the air total results is correct';
+    is $on_the_air.total_pages, 22, 'On the air total pages is correct';
+    isa-ok $on_the_air.results, Array[WebService::TMDB::TV];
+    is $on_the_air.results[0].original_name, 'Rick and Morty', 'On the air result title is correct';
+}
+
+subtest 'Search TV', {
+    my $search = $tmdb.search_tv: query => 'wire';
+
+    isa-ok $search, WebService::TMDB::TV::Search;
+    is $search.page, 1, 'Search page is correct';
+    is $search.total_results, 21, 'Search total results is correct';
+    is $search.total_pages, 2, 'Search total pages is correct';
+    isa-ok $search.results, Array[WebService::TMDB::TV];
+    is $search.results[0].original_name, 'The Wire', 'Search result title is correct';
+}
+
+subtest 'Discover TV', {
+    my $search = $tmdb.discover_tv: primary_release_year => 2020, with_genres => 18;
+
+    isa-ok $search, WebService::TMDB::TV::Search;
+    is $search.page, 1, 'Discover page is correct';
+    is $search.total_results, 10000, 'Discover total results is correct';
+    is $search.total_pages, 500, 'Discover total pages is correct';
+    isa-ok $search.results, Array[WebService::TMDB::TV];
+    is $search.results[0].original_name, 'The Flash', 'Discover result title is correct';
+}
+
+subtest 'Person', {
+    my $person = $tmdb.person: 287;
+
+    isa-ok $person, WebService::TMDB::Person;
+    is $person.birthday, Date.new('1963-12-18'), 'Birthday is correct';
+    is $person.known_for_department, 'Acting', 'known_for_department is correct';
+    is $person.deathday, Date, 'Deathday is correct';
+    is $person.id, 287, 'id is correct';
+    is $person.name, 'Brad Pitt', 'Name is correct';
+    # isa-ok $person.also_known_as, Array[Str];
+    is $person.also_known_as[0], 'برد پیت', 'also_known_as is correct';
+    is $person.gender, 2, 'Gender is correct';
+    is $person.biography, "William Bradley \"Brad\" Pitt (born December 18, 1963) is an American actor and film producer.", 'Biography is correct';
+    is $person.popularity, 18.12, 'Popularity is correct';
+    is $person.place_of_birth, 'Shawnee, Oklahoma, USA', 'Bithplace is correct';
+    is $person.profile_path, '/tJiSUYst4ddIaz1zge2LqCtu9tw.jpg', 'Profile path is correct';
+    is $person.adult, False, 'Adult is correct';
+    is $person.imdb_id, "nm0000093", 'IMDB id is correct';
+    is $person.homepage, "", 'Homepage is correct';
+
+    subtest 'Person with appended response', {
+        my $person = $tmdb.person: 287, append => <movie_credits tv_credits external_ids>;
+
+        is $person.name, 'Brad Pitt', 'Name is correct';
+        isa-ok $person.movie_credits, WebService::TMDB::Person::MovieCredits;
+
+        isa-ok $person.movie_credits.cast, Array[WebService::TMDB::Person::MovieCast];
+        my $movie_cast = $person.movie_credits.cast[0];
+        is $movie_cast.release_date, Date.new('2011-09-22'), 'Release_Date is correct';
+        is $movie_cast.adult, False, 'Adult is correct';
+        is $movie_cast.vote_average, 7.2, 'Vote_Average is correct';
+        is $movie_cast.vote_count, 2760, 'Vote_Count is correct';
+        is $movie_cast.video, False, 'Video is correct';
+        is $movie_cast.title, 'Moneyball', 'Title is correct';
+        is $movie_cast.popularity, 18.931, 'Popularity is correct';
+        is $movie_cast.genre_ids[0], 18, 'Genre id is correct';
+        is $movie_cast.original_language, 'en', 'Original language is correct';
+        is $movie_cast.character, 'Billy Beane', 'Character is correct';
+        is $movie_cast.original_title, 'Moneyball', 'Original title is correct';
+        is $movie_cast.poster_path, '/4yIQq1e6iOcaZ5rLDG3lZBP3j7a.jpg', 'Poster path is correct';
+        is $movie_cast.id, 60308, 'id is correct';
+        is $movie_cast.backdrop_path, '/qbWrn6xaWK4nkzMRfP6oBBUW2cy.jpg', 'Backdrop path is correct';
+        is $movie_cast.overview, "The story of Oakland Athletics general manager Billy Beane's successful attempt to put together a baseball team on a budget, by employing computer-generated analysis to draft his players.", 'Overview is correct';
+        is $movie_cast.credit_id, '52fe461fc3a368484e0800bd', 'Credit_Id is correct';
+
+        isa-ok $person.movie_credits.crew, Array[WebService::TMDB::Person::MovieCrew];
+        my $movie_crew = $person.movie_credits.crew[0];
+        is $movie_crew.id, 1422, 'id is correct';
+        is $movie_crew.department, "Production", 'Department is correct';
+        is $movie_crew.original_language, "en", 'Original_Language is correct';
+        is $movie_crew.original_title, "The Departed", 'Original_Title is correct';
+        is $movie_crew.job, "Producer", 'Job is correct';
+        is $movie_crew.overview, "To take down South Boston's Irish Mafia, the police send in one of their own to infiltrate the underworld, not realizing the syndicate has done likewise. While an undercover cop curries favor with the mob kingpin, a career criminal rises through the police ranks. But both sides soon discover there's a mole among them.", 'Overview is correct';
+        is $movie_crew.genre_ids[0], 80, 'Genre id is correct';
+        is $movie_crew.video, False, 'Video is correct';
+        is $movie_crew.credit_id, '52fe42f5c3a36847f802ff41', 'Credit_Id is correct';
+        is $movie_crew.poster_path, '/jyAgiqVSx5fl0NNj7WoGGKweXrL.jpg', 'Poster path is correct';
+        is $movie_crew.popularity, 23.429, 'Popularity is correct';
+        is $movie_crew.backdrop_path, '/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg', 'Backdrop path is correct';
+        is $movie_crew.vote_count, 9592, 'Vote_Count is correct';
+        is $movie_crew.title, 'The Departed', 'Title is correct';
+        is $movie_crew.adult, False, 'Adult is correct';
+        is $movie_crew.vote_average, 8.1, 'Vote_Average is correct';
+        is $movie_crew.release_date, Date.new('2006-10-05'), 'Release_Date is correct';
+
+        isa-ok $person.tv_credits.cast, Array[WebService::TMDB::Person::TVCast];
+        my $tv_cast = $person.tv_credits.cast[0];
+        is $tv_cast.poster_path, '/k64lMNJScnkeXzOmQW9JVDTseaF.jpg', 'Poster path is correct';
+        is $tv_cast.original_name, 'Growing Pains', 'Original_Name is correct';
+        is $tv_cast.id, 54, 'id is correct';
+        is $tv_cast.vote_count, 60, 'vote_count is correct';
+        is $tv_cast.vote_average, 6.8, 'vote_average is correct';
+        is $tv_cast.name, 'Growing Pains', 'Name is correct';
+        is $tv_cast.first_air_date, Date.new('1985-09-24'), 'First air date is correct';
+        is $tv_cast.genre_ids[0], 35, 'Genre id is correct';
+        is $tv_cast.popularity, 5.408, 'Popularity is correct';
+        is $tv_cast.character, '', 'Character is correct';
+        is $tv_cast.episode_count, 2, 'Episode_Count is correct';
+        is $tv_cast.original_language, 'en', 'Original_Language is correct';
+        is $tv_cast.credit_id, '525333fb19c295794002c720', 'Credit_Id is correct';
+        is $tv_cast.backdrop_path, '/qowDKrH3k5Ea04vg4kZimzP5jfq.jpg', 'Backdrop_Path is correct';
+        is $tv_cast.overview, "Growing Pains is an American television sitcom about an affluent family, residing in Huntington, Long Island, New York, with a working mother and a stay-at-home psychiatrist father raising three children together, which aired on ABC from September 24, 1985, to April 25, 1992.", 'Overview is correct';
+        is $tv_cast.origin_country[0], 'US', 'Origin_Country is correct';
+
+        isa-ok $person.tv_credits.crew, Array[WebService::TMDB::Person::TVCrew];
+        my $tv_crew = $person.tv_credits.crew[0];
+        is $tv_crew.id, 69851, 'id is correct';
+        is $tv_crew.department, 'Production', 'Department is correct';
+        is $tv_crew.original_language, 'en', 'Original_Language is correct';
+        is $tv_crew.episode_count, 8, 'Episode_Count is correct';
+        is $tv_crew.job, 'Executive Producer', 'Job is correct';
+        is $tv_crew.overview, "Anthology series of famous feuds with the first season based on the legendary rivalry between Bette Davis and Joan Crawford which began early on their careers, climaxed on the set of \"Whatever Happened to Baby Jane?\" and evolved into an Oscar vendetta.", 'Overview is correct';
+        is $tv_crew.origin_country[0], 'US', 'Origin_Country is correct';
+        is $tv_crew.original_name, 'FEUD', 'Original_Name is correct';
+        is $tv_crew.vote_count, 97, 'Vote_Count is correct';
+        is $tv_crew.name, 'FEUD', 'Name is correct';
+        is $tv_crew.popularity, 10.129, 'Popularity is correct';
+        is $tv_crew.credit_id, '58d06d6e9251415a240011dc', 'Credit_Id is correct';
+        is $tv_crew.backdrop_path, '/kKSSvF4nLudxX907Qm75nRUOOHn.jpg', 'Backdrop_Path is correct';
+        is $tv_crew.first_air_date, Date.new('2017-03-05'), 'First air date is correct';
+        is $tv_crew.vote_average, 8.1, 'Vote average is correct';
+        is $tv_crew.genre_ids[0], 18, 'Genre id is correct';
+        is $tv_crew.poster_path, '/obztijEwCVkKQutVK9eARn9jyNh.jpg', 'Poster_Path is correct';
+
+        isa-ok $person.external_ids, WebService::TMDB::ExternalID;
+        is $person.external_ids.instagram_id, Str, 'Instagram id is correct';
+        is $person.external_ids.twitter_id, Str, 'Twitter id is correct';
+        is $person.external_ids.imdb_id, 'nm0000093', 'imdb id is correct';
+        is $person.external_ids.facebook_id, Str, 'facebook id is correct';
+    }
+}
+
+subtest 'Person movie credits', {
+    my $credits = $tmdb.person_movie_credits: 287;
+
+    isa-ok $credits, WebService::TMDB::Person::MovieCredits;
+    is $credits.cast[0].title, 'Moneyball', 'Cast title is correct';
+    is $credits.crew[0].title, 'The Departed', 'Crew title is correct';
+}
+
+subtest 'Person tv credits', {
+    my $credits = $tmdb.person_tv_credits: 287;
+
+    isa-ok $credits, WebService::TMDB::Person::TVCredits;
+    is $credits.cast[0].name, 'Growing Pains', 'Cast name is correct';
+    is $credits.crew[0].name, 'FEUD', 'Crew name is correct';
+}
+
+subtest 'Person external ids', {
+    my $external_ids = $tmdb.person_external_ids: 287;
+
+    isa-ok $external_ids, WebService::TMDB::ExternalID;
+    is $external_ids.imdb_id, 'nm0000093', 'IMDB_ID is correct';
+}
+
+subtest 'Search Person', {
+    my $search = $tmdb.search_person: query => 'kirsten dunst';
+
+    isa-ok $search, WebService::TMDB::Person::Search;
+    is $search.page, 1, 'Page is correct';
+    is $search.total_results, 1, 'Total_Results is correct';
+    is $search.total_pages, 1, 'Total_Pages is correct';
+    isa-ok $search.results, Array[WebService::TMDB::Person];
+    is $search.results[0].popularity, 5.354, 'Popularity is correct';
+    is $search.results[0].known_for_department, 'Acting', 'Known_For_Department is correct';
+    is $search.results[0].name, 'Kirsten Dunst', 'Name is correct';
+    is $search.results[0].id, 205, 'id is correct';
+    is $search.results[0].profile_path, '/5dI5s8Oq2Ook5PFzTWMW6DCXVjm.jpg', 'Profile_Path is correct';
+    is $search.results[0].adult, False, 'Adult is correct';
+    is $search.results[0].gender, 1, 'Gender is correct';
+}
+
+subtest 'Genre movie list', {
+    my $list = $tmdb.genre_movie_list;
+
+    isa-ok $list, WebService::TMDB::Genre::List;
+    # isa-ok $list.genres, Array[WebService::TMDB::Genre];
+    is $list.genres[0].id, 28, 'id is correct';
+    is $list.genres[0].name, 'Action', 'Name is correct';
+}
+
+subtest 'Genre tv list', {
+    my $list = $tmdb.genre_tv_list;
+
+    isa-ok $list, WebService::TMDB::Genre::List;
+    # isa-ok $list.genres, Array[WebService::TMDB::Genre];
+    is $list.genres[0].id, 10759, 'id is correct';
+    is $list.genres[0].name, 'Action & Adventure', 'Name is correct';
+}
+
+subtest 'Configuration', {
+    my $config = $tmdb.configuration;
+
+    isa-ok $config.images, WebService::TMDB::Configuration::Image;
+    is $config.images.base_url, 'http://image.tmdb.org/t/p/', 'Base url is correct';
+    is $config.images.secure_base_url, 'https://image.tmdb.org/t/p/', 'Secure base url is correct';
+    is $config.images.backdrop_sizes[1], 'w780', 'Backdrop size is correct';
+    is $config.images.logo_sizes[1], 'w92', 'Logo size is correct';
+    is $config.images.poster_sizes[1], 'w154', 'Poster size is correct';
+    is $config.images.profile_sizes[1], 'w185', 'Profile size is correct';
+    is $config.images.still_sizes[1], 'w185', 'Still size is correct';
+}
+
+subtest 'Movie certification list', {
+    my $cert_list = $tmdb.certification_movie_list;
+
+    is $cert_list.certifications.US[0].certification, 'G', 'Certification is correct';
+    is $cert_list.certifications.US[0].order, 1, 'Certification order is correct';
+}
+
+subtest 'TV certification list', {
+    my $cert_list = $tmdb.certification_tv_list;
+
+    is $cert_list.certifications.US[0].certification, 'NR', 'Certification is correct';
+    is $cert_list.certifications.US[0].order, 0, 'Certification order is correct';
+}
+
+done-testing;

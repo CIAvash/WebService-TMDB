@@ -1,0 +1,268 @@
+{
+    "birthday": "1963-12-18",
+    "known_for_department": "Acting",
+    "id": 287,
+    "movie_credits": {
+        "cast": [
+            {
+                "release_date": "2011-09-22",
+                "adult": false,
+                "vote_average": 7.2,
+                "vote_count": 2760,
+                "video": false,
+                "title": "Moneyball",
+                "popularity": 18.931,
+                "genre_ids": [
+                    18
+                ],
+                "original_language": "en",
+                "character": "Billy Beane",
+                "original_title": "Moneyball",
+                "poster_path": "/4yIQq1e6iOcaZ5rLDG3lZBP3j7a.jpg",
+                "id": 60308,
+                "backdrop_path": "/qbWrn6xaWK4nkzMRfP6oBBUW2cy.jpg",
+                "overview": "The story of Oakland Athletics general manager Billy Beane's successful attempt to put together a baseball team on a budget, by employing computer-generated analysis to draft his players.",
+                "credit_id": "52fe461fc3a368484e0800bd"
+            },
+            {
+                "poster_path": "/zGlzlzms2vN5vSFVMWuknu7XGXP.jpg",
+                "adult": false,
+                "backdrop_path": "/eQsellX1IeGaIjv1w4JBzoOrvmf.jpg",
+                "vote_count": 711,
+                "video": false,
+                "id": 354287,
+                "popularity": 11.798,
+                "genre_ids": [
+                    35,
+                    18,
+                    10752
+                ],
+                "original_language": "en",
+                "title": "War Machine",
+                "original_title": "War Machine",
+                "release_date": "2017-05-26",
+                "character": "Gen. Glen McMahon",
+                "vote_average": 5.6,
+                "overview": "A rock star general bent on winning the “impossible” war in Afghanistan takes us inside the complex machinery of modern war. Inspired by the true story of General Stanley McChrystal.",
+                "credit_id": "55cc4e9b925141764800222d"
+            },
+            {
+                "poster_path": "/56mOJth6DJ6JhgoE2jtpilVqJO.jpg",
+                "adult": false,
+                "backdrop_path": "/zky54sJji2fFfP9wihhxi4IPwgB.jpg",
+                "vote_count": 5675,
+                "video": false,
+                "id": 107,
+                "popularity": 23.145,
+                "genre_ids": [
+                    80,
+                    53
+                ],
+                "original_language": "en",
+                "title": "Snatch",
+                "original_title": "Snatch",
+                "release_date": "2000-09-01",
+                "character": "Mickey O'Neil",
+                "vote_average": 7.8,
+                "overview": "There are two overlapping stories. One is the search for a stolen diamond. The other is about a boxing promoter who’s having trouble with a psychotic gangster.",
+                "credit_id": "52fe4218c3a36847f8003be5"
+            },
+            {
+                "poster_path": "/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg",
+                "adult": false,
+                "backdrop_path": "/8iVyhmjzUbvAGppkdCZPiyEHSoF.jpg",
+                "vote_count": 19126,
+                "video": false,
+                "id": 550,
+                "popularity": 40.318,
+                "genre_ids": [
+                    18
+                ],
+                "original_language": "en",
+                "title": "Fight Club",
+                "original_title": "Fight Club",
+                "release_date": "1999-10-15",
+                "character": "Tyler Durden",
+                "vote_average": 8.4,
+                "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+                "credit_id": "52fe4250c3a36847f80149f7"
+            },
+            {
+                "poster_path": "/kKoG0hXBmBbkDnJYhhHisdin73W.jpg",
+                "adult": false,
+                "backdrop_path": "/1IWaKG7AWiYMhADxhGtnElDJAGI.jpg",
+                "vote_count": 5133,
+                "video": false,
+                "id": 63,
+                "popularity": 22.963,
+                "genre_ids": [
+                    9648,
+                    878,
+                    53
+                ],
+                "original_language": "en",
+                "title": "Twelve Monkeys",
+                "original_title": "Twelve Monkeys",
+                "release_date": "1995-12-29",
+                "character": "Jeffrey Goines",
+                "vote_average": 7.6,
+                "overview": "In the year 2035, convict James Cole reluctantly volunteers to be sent back in time to discover the origin of a deadly virus that wiped out nearly all of the earth's population and forced the survivors into underground communities. But when Cole is mistakenly sent to 1990 instead of 1996, he's arrested and locked up in a mental hospital. There he meets psychiatrist Dr. Kathryn Railly, and patient Jeffrey Goines, the son of a famous virus expert, who may hold the key to the mysterious rogue group, the Army of the 12 Monkeys, thought to be responsible for unleashing the killer disease.",
+                "credit_id": "52fe4212c3a36847f8001b39"
+            },
+            {
+                "poster_path": "/cQaqpwN5Nq0GNNKE1hIgYLpLlca.jpg",
+                "adult": false,
+                "backdrop_path": "/1l3SDZas8FSceRA78Dvy2oQHq5u.jpg",
+                "vote_count": 1835,
+                "video": false,
+                "id": 1541,
+                "popularity": 16,
+                "genre_ids": [
+                    12,
+                    80,
+                    18,
+                    53
+                ],
+                "original_language": "en",
+                "title": "Thelma & Louise",
+                "original_title": "Thelma & Louise",
+                "release_date": "1991-05-24",
+                "character": "J.D.",
+                "vote_average": 7.5,
+                "overview": "Whilst on a short weekend getaway, Louise shoots a man who had tried to rape Thelma. Due to the incriminating circumstances, they make a run for it and thus a cross country chase ensues for the two fugitives. Along the way, both women rediscover the strength of their friendship and surprising aspects of their personalities and self-strengths in the trying times.",
+                "credit_id": "52fe42fbc3a36847f8031a6d"
+            },
+            {
+                "poster_path": "/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg",
+                "adult": false,
+                "backdrop_path": "/3P52oz9HPQWxcwHOwxtyrVV1LKi.jpg",
+                "vote_count": 11221,
+                "video": false,
+                "id": 383498,
+                "popularity": 45.512,
+                "genre_ids": [
+                    28,
+                    12,
+                    35
+                ],
+                "original_language": "en",
+                "title": "Deadpool 2",
+                "original_title": "Deadpool 2",
+                "release_date": "2018-05-10",
+                "character": "Telford Porter / Vanisher",
+                "vote_average": 7.5,
+                "overview": "Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.",
+                "credit_id": "5afb5d1892514114ed00395d"
+            }
+        ],
+        "crew": [
+            {
+                "id": 1422,
+                "department": "Production",
+                "original_language": "en",
+                "original_title": "The Departed",
+                "job": "Producer",
+                "overview": "To take down South Boston's Irish Mafia, the police send in one of their own to infiltrate the underworld, not realizing the syndicate has done likewise. While an undercover cop curries favor with the mob kingpin, a career criminal rises through the police ranks. But both sides soon discover there's a mole among them.",
+                "genre_ids": [
+                    80,
+                    18,
+                    53
+                ],
+                "video": false,
+                "credit_id": "52fe42f5c3a36847f802ff41",
+                "poster_path": "/jyAgiqVSx5fl0NNj7WoGGKweXrL.jpg",
+                "popularity": 23.429,
+                "backdrop_path": "/9RuC3UD6mNZ0p1J6RbfJDUkQ03i.jpg",
+                "vote_count": 9592,
+                "title": "The Departed",
+                "adult": false,
+                "vote_average": 8.1,
+                "release_date": "2006-10-05"
+            }
+        ]
+    },
+    "homepage": "",
+    "profile_path": "/tJiSUYst4ddIaz1zge2LqCtu9tw.jpg",
+    "imdb_id": "nm0000093",
+    "deathday": null,
+    "external_ids": {
+        "freebase_id": "/en/brad_pitt",
+        "instagram_id": null,
+        "tvrage_id": 59436,
+        "twitter_id": null,
+        "freebase_mid": "/m/0c6qh",
+        "imdb_id": "nm0000093",
+        "facebook_id": null
+    },
+    "name": "Brad Pitt",
+    "also_known_as": [
+        "برد پیت",
+        "Бред Пітт",
+        "Брэд Питт",
+        "畢·彼特",
+        "ブラッド・ピット",
+        "브래드 피트",
+        "براد بيت",
+        "แบรด พิตต์",
+        "William Bradley \"Brad\" Pitt",
+        "William Bradley Pitt",
+        "Μπραντ Πιτ",
+        "布拉德·皮特"
+    ],
+    "biography": "William Bradley \"Brad\" Pitt (born December 18, 1963) is an American actor and film producer.",
+    "tv_credits": {
+        "cast": [
+            {
+                "poster_path": "/k64lMNJScnkeXzOmQW9JVDTseaF.jpg",
+                "original_name": "Growing Pains",
+                "id": 54,
+                "vote_count": 60,
+                "vote_average": 6.8,
+                "name": "Growing Pains",
+                "first_air_date": "1985-09-24",
+                "genre_ids": [
+                    35
+                ],
+                "popularity": 5.408,
+                "character": "",
+                "episode_count": 2,
+                "original_language": "en",
+                "credit_id": "525333fb19c295794002c720",
+                "backdrop_path": "/qowDKrH3k5Ea04vg4kZimzP5jfq.jpg",
+                "overview": "Growing Pains is an American television sitcom about an affluent family, residing in Huntington, Long Island, New York, with a working mother and a stay-at-home psychiatrist father raising three children together, which aired on ABC from September 24, 1985, to April 25, 1992.",
+                "origin_country": [
+                    "US"
+                ]
+            }
+        ],
+        "crew": [
+            {
+                "id": 69851,
+                "department": "Production",
+                "original_language": "en",
+                "episode_count": 8,
+                "job": "Executive Producer",
+                "overview": "Anthology series of famous feuds with the first season based on the legendary rivalry between Bette Davis and Joan Crawford which began early on their careers, climaxed on the set of \"Whatever Happened to Baby Jane?\" and evolved into an Oscar vendetta.",
+                "origin_country": [
+                    "US"
+                ],
+                "original_name": "FEUD",
+                "vote_count": 97,
+                "name": "FEUD",
+                "popularity": 10.129,
+                "credit_id": "58d06d6e9251415a240011dc",
+                "backdrop_path": "/kKSSvF4nLudxX907Qm75nRUOOHn.jpg",
+                "first_air_date": "2017-03-05",
+                "vote_average": 8.1,
+                "genre_ids": [
+                    18
+                ],
+                "poster_path": "/obztijEwCVkKQutVK9eARn9jyNh.jpg"
+            }
+        ]
+    },
+    "adult": false,
+    "gender": 2,
+    "place_of_birth": "Shawnee, Oklahoma, USA",
+    "popularity": 20.236
+}
