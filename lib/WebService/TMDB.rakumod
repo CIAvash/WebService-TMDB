@@ -235,7 +235,7 @@ L<https://github.com/CIAvash/WebService-TMDB/issues>
 
 =head1 AUTHOR
 
-Siavash Askari Nasr <siavash.askari.nasr@gmail.com>
+Siavash Askari Nasr L<https://ciavash.name>
 
 =head1 COPYRIGHT AND LICENSE
 

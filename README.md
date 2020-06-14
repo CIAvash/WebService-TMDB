@@ -312,7 +312,7 @@ BUGS
 AUTHOR
 ======
 
-Siavash Askari Nasr <siavash.askari.nasr@gmail.com>
+Siavash Askari Nasr - https://ciavash.name
 
 COPYRIGHT AND LICENSE
 =====================
