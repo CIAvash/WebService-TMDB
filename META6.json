@@ -4,7 +4,7 @@
     "description": "A module for interfacing with TMDB API",
     "authors": ["Siavash Askari Nasr"],
     "auth": "cpan:CIAVASH",
-    "tags": ["TMDB", "The Movie Database", "Web Service", "themoviedb.org"],
+    "tags": ["TMDB", "The Movie Database", "Web Service", "themoviedb.org", "Movie", "TV"],
     "provides": {
         "WebService::TMDB": "lib/WebService/TMDB.rakumod",
         "WebService::TMDB::Facade::UserAgent": "lib/WebService/TMDB/Facade/UserAgent.rakumod",
