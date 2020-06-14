@@ -44,6 +44,7 @@
     },
     "depends": [
         "HTTP::UserAgent",
+        "JSON::Unmarshal",
         "JSON::Fast",
         "URI"
     ],
