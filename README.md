@@ -45,7 +45,7 @@ ATTRIBUTES/METHODS
 
 Access token required by themoviedb.org
 
-### has WebService::TMDB::Role::Request $.request handles<language set_language>
+### has WebService::TMDB::Role::Request $.request handles('language', 'set_language')
 
 An object for making requests to themoviedb.org
 
