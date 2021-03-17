@@ -20,7 +20,7 @@ say $movie.credits.cast[0].name;
 INSTALLATION
 ============
 
-You need to have [Raku](https://raku.org/) and [zef](https://github.com/ugexe/zef), then run:
+You need to have [Raku](https://www.raku-lang.ir/en) and [zef](https://github.com/ugexe/zef), then run:
 
     zef install WebService::TMDB
 

@@ -21,7 +21,7 @@ say $movie.credits.cast[0].name;
 
 =head1 INSTALLATION
 
-You need to have L<Raku|https://raku.org/> and L<zef|https://github.com/ugexe/zef>, then run:
+You need to have L<Raku|https://www.raku-lang.ir/en> and L<zef|https://github.com/ugexe/zef>, then run:
 
 =begin code
 
